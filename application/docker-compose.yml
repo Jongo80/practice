@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    volumes:
+      - /application
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/clients
+      - SPRING_DATASOURCE_USERNAME=developer
+      - SPRING_DATASOURCE_PASSWORD=developer
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - /frontend
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:13
+    container_name: DB
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+      POSTGRES_DB: clients
+    ports:
+      - 5432:5432

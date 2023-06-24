@@ -70,7 +70,7 @@ export default function ClientEdit() {
                 </FormGroup>
                 <FormGroup>
                     <Label for="birthTime">Birth Time</Label>
-                    <Input type="text" name="birthTime" id="birthTime" placeholder={item.birthTime || 'YYYY-MM-DD'}
+                    <Input type="date" name="birthTime" id="birthTime" placeholder={item.birthTime || 'YYYY-MM-DD'}
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
