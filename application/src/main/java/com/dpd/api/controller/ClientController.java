@@ -46,6 +46,7 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity updateClient(@PathVariable Long id, @RequestBody Client client) {
         Client currentClient = clientRepository.findById(id).orElseThrow(RuntimeException::new);
+        currentClient.setName(client.getName());
         currentClient.setBirthTime(client.getBirthTime());
         currentClient.setBirthPlace(client.getBirthPlace());
         currentClient.setMotherBirthName(client.getMotherBirthName());

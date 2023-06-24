@@ -10,10 +10,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "client")
 public class Client {
+    
     @Id
     @GeneratedValue
     private Long id;
-
+    private String name;
     private Date birthTime;
     private String birthPlace;
     private String motherBirthName;
@@ -30,6 +31,14 @@ public class Client {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getBirthTime() {
@@ -97,8 +106,9 @@ public class Client {
     }
 
 
-    public Client(Long id, Date birthTime, String birthPlace, String motherBirthName, Long socialSecurityNumber, Long taxIdentificationNumber, String email, String address, Long phoneNumber) {
+    public Client(Long id, String name, Date birthTime, String birthPlace, String motherBirthName, Long socialSecurityNumber, Long taxIdentificationNumber, String email, String address, Long phoneNumber) {
         this.id = id;
+        this.name = name;
         this.birthTime = birthTime;
         this.birthPlace = birthPlace;
         this.motherBirthName = motherBirthName;

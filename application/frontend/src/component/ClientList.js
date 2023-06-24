@@ -35,9 +35,10 @@ export default function ClientList() {
     
     const clientList = (clients[0] !== 'There are no clients') ? 
         clients.map(client => <tr key={client.id}>
-            <td>{client.birthName}</td>
+            <td>{client.name}</td>
+            <td>{client.birthTime}</td>
             <td>{client.birthPlace}</td>
-            <td>{client.motherName}</td>
+            <td>{client.motherBirthName}</td>
             <td>{client.socialSecurityNumber}</td>
             <td>{client.taxIdentificationNumber}</td>
             <td>{client.email}</td>
@@ -65,9 +66,9 @@ export default function ClientList() {
                 <Table className="mt-4">
                     <thead>
                     <tr>
-                        <th width="30%">Birth Name</th>
+                        <th width="30%">Name</th>
                         <th width="30%">Birth Place</th>
-                        <th width="30%">Mother Name</th>
+                        <th width="30%">Mother Birth Name</th>
                         <th width="30%">Social Security Number</th>
                         <th width="30%">Tax Identification Number</th>
                         <th width="30%">Email</th>
