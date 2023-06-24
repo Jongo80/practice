@@ -46,14 +46,14 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity updateClient(@PathVariable Long id, @RequestBody Client client) {
         Client currentClient = clientRepository.findById(id).orElseThrow(RuntimeException::new);
-        currentClient.setBirthPlace(client.getBirthPlace());
         currentClient.setBirthTime(client.getBirthTime());
+        currentClient.setBirthPlace(client.getBirthPlace());
         currentClient.setMotherBirthName(client.getMotherBirthName());
-        currentClient.setAddress(client.getAddress());
-        currentClient.setPhoneNumber(client.getPhoneNumber());
         currentClient.setSocialSecurityNumber(client.getSocialSecurityNumber());
         currentClient.setTaxIdentificationNumber(client.getTaxIdentificationNumber());
         currentClient.setEmail(client.getEmail());
+        currentClient.setAddress(client.getAddress());
+        currentClient.setPhoneNumber(client.getPhoneNumber());
         clientRepository.save(currentClient);
 
         return ResponseEntity.ok().build();
