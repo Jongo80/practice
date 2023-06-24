@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from './AppNavBar';
 
 export default function ClientEdit() {
     const navigate = useNavigate();
     const params = useParams();
 
     const emptyItem = {
-        birthName: '',
+        name: '',
         birthTime: '',
         birthPlace: '',
         motherBirthName: '',
@@ -65,12 +65,12 @@ export default function ClientEdit() {
             <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="name">Name</Label>
-                    <Input type="text" name="name" id="name" placeholder={item.birthName || ''}
+                    <Input type="text" name="name" id="name" placeholder={item.name || ''}
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="birthTime">Birth Time</Label>
-                    <Input type="text" name="birthTime" id="birthTime" placeholder={item.birthTime || ''}
+                    <Input type="text" name="birthTime" id="birthTime" placeholder={item.birthTime || 'YYYY-MM-DD'}
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
@@ -79,8 +79,8 @@ export default function ClientEdit() {
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="motherName">Mother Birth Name</Label>
-                    <Input type="text" name="motherName" id="motherName" placeholder={item.motherBirthName || ''}
+                    <Label for="motherBirthName">Mother Birth Name</Label>
+                    <Input type="text" name="motherBirthName" id="motherBirthName" placeholder={item.motherBirthName || ''}
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>

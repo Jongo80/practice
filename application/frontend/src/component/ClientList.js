@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from './AppNavBar';
 import { Link } from 'react-router-dom';
 
 
@@ -67,6 +67,7 @@ export default function ClientList() {
                     <thead>
                     <tr>
                         <th width="30%">Name</th>
+                        <th width="30%">Birth Time</th>
                         <th width="30%">Birth Place</th>
                         <th width="30%">Mother Birth Name</th>
                         <th width="30%">Social Security Number</th>
@@ -81,6 +82,7 @@ export default function ClientList() {
                     {clientList}
                     </tbody>
                 </Table>
+                <Button tag={Link} to={"/"}>Back to Home Page</Button>
             </Container>
             </div>
           }
