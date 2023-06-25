@@ -8,7 +8,7 @@ RUN mvn dependency:go-offline -B
 
 COPY src ./src
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 FROM maven:3.8.3-openjdk-17
 

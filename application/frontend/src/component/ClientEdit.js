@@ -46,7 +46,12 @@ export default function ClientEdit() {
         event.preventDefault();
         const mandatoryFields = [item.name, item.birthTime, item.birthPlace, item.motherBirthName, item.socialSecurityNumber, item.taxIdentificationNumber, item.email, item.address, item.phoneNumber];
         if (mandatoryFields.filter(val => val !== '').length < 9) {
-            alert('you have empty mandatory field(s)')
+            if (mandatoryFields.filter(val => val !== '').length < 8) {
+                alert('you have empty mandatory fields')
+            }
+            else if (mandatoryFields.filter(val => val !== '').length === 8) {
+                alert('you have an empty mandatory field')
+            }
         }
         else {
             await fetch('/clients' + (item.id ? '/' + item.id : ''),
