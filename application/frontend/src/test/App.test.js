@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from '../component/App';
+import Home from '../component/Home';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+test('renders home page', () => {
+  render(<Home />);
+  const linkElement = screen.getByRole('link', { name: 'Clients' });
   expect(linkElement).toBeInTheDocument();
 });
