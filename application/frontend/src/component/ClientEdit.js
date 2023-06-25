@@ -16,7 +16,9 @@ export default function ClientEdit() {
         taxIdentificationNumber: '',
         email: '',
         address: '',
-        phoneNumber: ''
+        secondAddress: '',
+        phoneNumber: '',
+        secondPhoneNumber: ''
     };
     const [item, setItem] = useState(emptyItem);
 
@@ -42,17 +44,22 @@ export default function ClientEdit() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        await fetch('/clients' + (item.id ? '/' + item.id : ''),
-        {
-            method: (item.id) ? 'PUT' : 'POST',
-            headers: {
-                'Accept': 'applicaton/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(item),
-        });
-        navigate('/clients');
+        const mandatoryFields = [item.name, item.birthTime, item.birthPlace, item.motherBirthName, item.socialSecurityNumber, item.taxIdentificationNumber, item.email, item.address, item.phoneNumber];
+        if (mandatoryFields.filter(val => val !== '').length < 9) {
+            alert('you have empty mandatory field(s)')
+        }
+        else {
+            await fetch('/clients' + (item.id ? '/' + item.id : ''),
+            {
+                method: (item.id) ? 'PUT' : 'POST',
+                headers: {
+                    'Accept': 'applicaton/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            navigate('/clients');
+        }
     }
 
     const title = <h2>{item.id ? 'Edit Client' : 'Add Client'}</h2>;
@@ -102,10 +109,16 @@ export default function ClientEdit() {
                     <Label for="address">Address</Label>
                     <Input type="text" name="address" id="address" placeholder={item.address || ''}
                            onChange={handleChange}/>
+                    <Label for="secondAddress">Optional second address</Label>
+                    <Input type="text" name="secondAddress" id="secondAddress" placeholder={item.secondAddress || ''}
+                           onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="phoneNumber">Phone Number</Label>
-                    <Input type="number" name="phoneNumber" id="phoneNumber" placeholder={item.phoneNumber || ''}
+                    <Input type="tel" name="phoneNumber" id="phoneNumber" placeholder={item.phoneNumber || ''}
+                           onChange={handleChange}/>
+                    <Label for="secondPhoneNumber">Optional Second Phone Number</Label>
+                    <Input type="tel" name="secondPhoneNumber" id="secondPhoneNumber" placeholder={item.secondPhoneNumber || ''}
                            onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>

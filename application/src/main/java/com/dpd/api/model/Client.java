@@ -22,7 +22,9 @@ public class Client {
     private Long taxIdentificationNumber;
     private String email;
     private String address;
+    private String secondAddress;
     private Long phoneNumber;
+    private Long secondPhoneNumber;
 
 
     public Long getId() {
@@ -97,6 +99,14 @@ public class Client {
         this.address = address;
     }
 
+    public String getSecondAddress() {
+        return this.secondAddress;
+    }
+
+    public void setSecondAddress(String secondAddress) {
+        this.secondAddress = secondAddress;
+    }
+
     public Long getPhoneNumber() {
         return this.phoneNumber;
     }
@@ -105,8 +115,15 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
+    public Long getSecondPhoneNumber() {
+        return this.secondPhoneNumber;
+    }
 
-    public Client(Long id, String name, Date birthTime, String birthPlace, String motherBirthName, Long socialSecurityNumber, Long taxIdentificationNumber, String email, String address, Long phoneNumber) {
+    public void setSecondPhoneNumber(Long secondPhoneNumber) {
+        this.secondPhoneNumber = secondPhoneNumber;
+    }
+
+    public Client(Long id, String name, Date birthTime, String birthPlace, String motherBirthName, Long socialSecurityNumber, Long taxIdentificationNumber, String email, String address, String secondAddress, Long phoneNumber, Long secondPhoneNumber) {
         this.id = id;
         this.name = name;
         this.birthTime = birthTime;
@@ -116,11 +133,12 @@ public class Client {
         this.taxIdentificationNumber = taxIdentificationNumber;
         this.email = email;
         this.address = address;
+        this.secondAddress = secondAddress;
         this.phoneNumber = phoneNumber;
+        this.secondPhoneNumber = secondPhoneNumber;
     }
-
 
     public Client() {
-    }
+    }    
 
 }

@@ -51,8 +51,8 @@ export default function ClientList() {
             <td>{client.socialSecurityNumber}</td>
             <td>{client.taxIdentificationNumber}</td>
             <td>{client.email}</td>
-            <td>{client.address}</td>
-            <td>{client.phoneNumber}</td>
+            <td><tr>{client.address}</tr><tr>{client.secondAddress}</tr></td>
+            <td><tr>{client.phoneNumber}</tr><tr>{client.secondPhoneNumber}</tr></td>
             <td>
                 <ButtonGroup>
                     <Button size="sm" color="primary" tag={Link} to={"/clients/" + client.id}>Edit</Button>
@@ -83,8 +83,8 @@ export default function ClientList() {
                         <th width="30%">Social Security Number</th>
                         <th width="30%">Tax Identification Number</th>
                         <th width="30%">Email</th>
-                        <th width="30%">Address</th>
-                        <th width="30%">Phone Number</th>
+                        <th width="30%">Addresses</th>
+                        <th width="30%">Phone Numbers</th>
                         <th width="40%">Actions</th>
                     </tr>
                     </thead>

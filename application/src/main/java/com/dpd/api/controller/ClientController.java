@@ -54,7 +54,9 @@ public class ClientController {
         currentClient.setTaxIdentificationNumber(client.getTaxIdentificationNumber());
         currentClient.setEmail(client.getEmail());
         currentClient.setAddress(client.getAddress());
+        currentClient.setSecondAddress(client.getSecondAddress());
         currentClient.setPhoneNumber(client.getPhoneNumber());
+        currentClient.setSecondPhoneNumber(client.getSecondPhoneNumber());
         clientRepository.save(currentClient);
 
         return ResponseEntity.ok().build();
@@ -63,13 +65,15 @@ public class ClientController {
     @PutMapping("/gdpr/{id}")
     public ResponseEntity removeGdprDataFromClient(@PathVariable Long id) {
         Client currentClient = clientRepository.findById(id).orElseThrow(RuntimeException::new);
-        currentClient.setName("");
-        currentClient.setMotherBirthName("");
-        currentClient.setSocialSecurityNumber(0l);
-        currentClient.setTaxIdentificationNumber(0l);
-        currentClient.setEmail("");
-        currentClient.setAddress("");
-        currentClient.setPhoneNumber(0l);
+        currentClient.setName(null);
+        currentClient.setMotherBirthName(null);
+        currentClient.setSocialSecurityNumber(null);
+        currentClient.setTaxIdentificationNumber(null);
+        currentClient.setEmail(null);
+        currentClient.setAddress(null);
+        currentClient.setSecondAddress(null);
+        currentClient.setPhoneNumber(null);
+        currentClient.setSecondPhoneNumber(null);
         clientRepository.save(currentClient);
 
         return ResponseEntity.ok().build();
