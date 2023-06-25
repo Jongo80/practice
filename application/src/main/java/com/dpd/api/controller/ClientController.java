@@ -60,6 +60,21 @@ public class ClientController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/gdpr/{id}")
+    public ResponseEntity removeGdprDataFromClient(@PathVariable Long id) {
+        Client currentClient = clientRepository.findById(id).orElseThrow(RuntimeException::new);
+        currentClient.setName("");
+        currentClient.setMotherBirthName("");
+        currentClient.setSocialSecurityNumber(0l);
+        currentClient.setTaxIdentificationNumber(0l);
+        currentClient.setEmail("");
+        currentClient.setAddress("");
+        currentClient.setPhoneNumber(0l);
+        clientRepository.save(currentClient);
+
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity deleteClient(@PathVariable Long id) {
         clientRepository.deleteById(id);

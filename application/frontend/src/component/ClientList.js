@@ -10,15 +10,15 @@ export default function ClientList() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-
-        const fetchData = async () => {
-            const response = await fetch("/clients");
-            const body = await response.json();
-            setClients((body.length !== 0) ? body : ['There are no clients']);
-            setIsLoading(false);
-        }
         fetchData().catch(console.error);
     }, [])
+
+    const fetchData = async () => {
+        const response = await fetch("/clients");
+        const body = await response.json();
+        setClients((body.length !== 0) ? body : ['There are no clients']);
+        setIsLoading(false);
+    }
 
     const removeClient = async (id) => {
         await fetch(`/clients/${id}`, {
@@ -27,10 +27,19 @@ export default function ClientList() {
             'Accept': 'applciation/json',
             'Content-Type': 'application/json'
           }
-        }).then(() => {
-          let newClients = clients.filter((client) => client.id !== id);
-          setClients(newClients);
         });
+        await fetchData();
+    }
+
+    const gdprRequest = async (id) => {
+        await fetch(`/clients/gdpr/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'applciation/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        await fetchData();
     }
     
     const clientList = (clients[0] !== 'There are no clients') ? 
@@ -47,6 +56,7 @@ export default function ClientList() {
             <td>
                 <ButtonGroup>
                     <Button size="sm" color="primary" tag={Link} to={"/clients/" + client.id}>Edit</Button>
+                    <Button size="sm" onClick={() => gdprRequest(client.id)}>GDPR</Button>
                     <Button size="sm" color="danger" onClick={() => removeClient(client.id)}>Delete</Button>
                 </ButtonGroup>
             </td>
